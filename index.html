@@ -1,0 +1,87 @@
+<html ng-app="MyApp">
+<head>
+	<title>Calendar</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+	<script src="controllers/EventsController.js"></script>
+	<script src="controllers/DateController.js"></script>
+	<script src="angular-local-storage/dist/angular-local-storage.js"></script>
+	<script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+	<script>
+        var myApp = angular.module('MyApp', ['LocalStorageModule']);
+    </script>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body ng-controller="DateController">
+<div class="page_background">
+	<table  ng-controller="EventsController">
+		<tr>
+			<td>
+				<table class="table table-bordered">
+				<tr ng-repeat="day in week.days1">
+					<td class="checkedTd">
+						<div class="header_container">
+							<div class="date_number">
+								<span>{{day.number}}</span>
+							</div>
+							<div class="date_day">
+								<span>{{day.name}}</span>
+							</div>
+								<input type="button" class="btn btn-warning btn_add" value="+" ng-click="formActive(day.number)">
+						</div>
+						<div class="events_container">
+							<ul>
+									<li ng-repeat="event in day.events" class="type{{event.type}}" ng-click="Edit(event, day.number)">
+										{{event.time}} {{event.name}}
+									</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</td>
+			<td>
+				<table class="table table-bordered">
+				<tr ng-repeat="day in week.days2">
+					<td class="checkedTd">
+						<div class="header_container">
+							<div class="date_number">
+								<time>{{day.number}}</time>
+							</div>
+							<div class="date_day">
+								<span>{{day.name}}</span>
+							</div>
+								<input type="button" class="btn btn-warning btn_add" value="+" ng-click="formActive(day.number)">
+						</div>
+						<div class="events_container">
+							<ul>
+									<li ng-repeat="event in day.events" class="type{{event.type}}">
+										<div >{{event.time}} {{event.name}}</div>
+									</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr ng-hide="!formIsActive">
+					<td>
+						<form name="eventAdd" novalidate ng-controller="EventsController" ng-submit="formNotActive(newEvent)">
+							Time:<input type="text" ng-model="newEvent.time" class="form-control" value="{{newEvent.time}}" placeholder="hh:mm">
+							 Name:<input type="text" ng-model="newEvent.name" class="form-control" placeholder="Name of event">
+							 Type:<select class="form-control" ng-model="newEvent.type">
+							  <option>birthday</option>
+							  <option>meeting</option>
+							  <option>trip</option>
+							</select>
+							<input class="btn btn-default" style="margin-top: 10px;" type="submit" value="Submit">
+							<input class="btn btn-default" style="margin-top: 10px;" type="button" value="Delete" ng-hide="!DeleteActive" ng-click="DeleteActive(newEvent)">
+						</form>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+
+	</div>
+</body>
+</html>

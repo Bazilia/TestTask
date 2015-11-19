@@ -1,0 +1,59 @@
+.date_number{
+	display: inline-block;
+	width: 90px;
+}
+.date_day{
+	display: inline-block;
+	width: 163px;
+}
+.page_background{
+	background: linear-gradient(to bottom, #bcbbbb, #ffffff);
+	height: 15px;
+	position: absolute;
+}
+table{
+	border-collapse: collapse;
+}
+ .checkedTd:hover{
+	border-color: #4d83a6 !important;
+	cursor:pointer;
+	}
+.checkedTd:hover
+		.header_container{
+			background-color: #4d83a6;
+			color: white;
+		}
+
+td{
+	padding: 0!important;
+	width: 300px;
+	vertical-align: top;
+}
+span{
+	margin: 8px;
+}
+ul{
+	list-style-type: none;
+	padding: 0;
+}
+li{
+	margin-bottom: 1px;
+}
+li:hover{
+	opacity: 0.7;
+}
+.typetrip{
+	background-color:#f5a59c;
+	color: white;
+}
+.typebirthday{
+	background-color: #f35702;
+	color: white;
+}
+.typemeeting{
+	color: green;
+}
+.btn_add{
+	font-weight: bold!important;
+	display: inline-block;
+}
